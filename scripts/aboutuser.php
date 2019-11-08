@@ -23,7 +23,7 @@ $bio = trim($_REQUEST['bio']);
     
     
     //Загрузка файла на СЕРВЕР!
-     $image_name = "user_pic";
+    $image_name = "user_pic";
     $kuda_zagrushat = "../images/";
     
    
@@ -66,8 +66,5 @@ $bio = trim($_REQUEST['bio']);
   //    move_uploaded_file($_FILES[$image_name]['tmp_name'], $kuda_zagrushat.$_FILES[$image_name]['tmp_name'])
       //       or exit('Возникла проблема сохранения вашего изображения в его постоянном месте!');
       $upload_filename = $kuda_zagrushat.$now.'-'.$_FILES[$image_name]['name'];
-       move_uploaded_file($_FILES[$image_name]['tmp_name'],$upload_filename )
-             or exit('Возникла проблема сохранения вашего изображения в его постоянном месте!');
-                $now++;
 
 
