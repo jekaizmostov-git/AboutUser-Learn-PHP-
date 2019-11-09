@@ -7,7 +7,7 @@
     //ПРОСМОТР ДАННЫХ!!!!!!!!!!!
 
 $user_id = $_REQUEST['user_id'];
-$sql ="SELECT * FROM users WHERE user_id =".$user_id;
+$sql =sprintf("SELECT * FROM users WHERE user_id = %d",$user_id);
 $result = mysqli_query($link, $sql);
 
     
@@ -19,11 +19,17 @@ $result = mysqli_query($link, $sql);
         $facebook_url=$row['facebook_url'];
         $twitter_url=$row['twitter_handle'];
         $bio = preg_replace("/[\r\n]+/", "</p><p>", $row['bio']);
-        $user_image = $row['user_pic_path'];
+        
+        $image_id = $row['profile_pic_id'];
+        $image_query = sprintf("SELECT * FROM images WHERE image_id = %d",$image_id);
+        $image_result = mysqli_query($link, $image_query);
+        
         
     }else{
          handle_error('Ошибка при выполнении вашего запроса!', 'Ошибка обнаружения пользователся с ID - '.$user_id);
     }
+
+   
 ?>
 
 
@@ -95,7 +101,7 @@ $result = mysqli_query($link, $sql);
             </p>
         </div>
         <div class="foto">
-            <p><img src="<?php echo $user_image; ?>" alt="Фото пользователя!"></p>
+            <p><img src="showimage.php?image_id=<?php echo $image_id; ?>"  alt="Фото пользователя!"></p>
         </div>
     </div>
     
